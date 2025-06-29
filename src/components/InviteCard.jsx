@@ -3,7 +3,7 @@ import whatsappIcon from "../assets/icons/whatsapp.svg?url";
 import googleMapsIcon from "../assets/icons/google-maps.svg?url";
 import wazeIcon from "../assets/icons/waze.svg?url";
 
-export default function InviteCard() {
+export default function InviteCard({ popped }) {
   const message = `Maya turns two! 🎉 Come splash play with bubbles and enjoy backyard fun with friends!\nSaturday Aug 2nd – 4:30 PM\n16710 NE 16th Pl, Bellevue`;
   const encodedAddress = encodeURIComponent("16710 NE 16th Pl, Bellevue");
   const shareUrl = `https://wa.me/?text=${encodeURIComponent(
@@ -22,7 +22,7 @@ export default function InviteCard() {
 
   return (
     <div className="absolute inset-4 flex items-center justify-center pointer-events-none">
-      <div className="pointer-events-auto relative max-w-md w-full bg-gradient-to-br from-white/80 to-pink-50/90 bg-clip-border backdrop-blur-xl rounded-3xl p-8 shadow-[0_0_50px_rgba(0,0,0,0.1)] overflow-hidden border-4 border-transparent transform transition-all hover:scale-[1.02] animate-fadeIn">
+      <div className="pointer-events-auto relative max-w-sm w-full bg-gradient-to-br from-white/80 to-pink-50/90 bg-clip-border backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-[0_0_50px_rgba(0,0,0,0.1)] overflow-hidden border-4 border-transparent transform transition-all hover:scale-[1.02] animate-fadeIn">
         {/* Card Decorative Blobs */}
         <div className="absolute -top-8 -left-8 w-24 h-24 bg-pink-300/30 rounded-full animate-float-slow"></div>
         <div className="absolute -bottom-16 -right-16 w-32 h-32 bg-blue-300/30 rounded-full animate-float-slow" style={{ animationDelay: '2s' }}></div>
@@ -71,6 +71,13 @@ export default function InviteCard() {
               </linearGradient>
             </defs>
           </svg>
+          
+          {/* Optional hint */}
+          {!popped && (
+            <p className="font-body text-sm text-gray-500 mb-3 text-center animate-pulse">
+              Tap a bubble to pop it!
+            </p>
+          )}
           
           {/* Description */}
           <p className="font-body text-lg sm:text-xl text-gray-700 mb-8 text-center leading-relaxed max-w-sm mx-auto">

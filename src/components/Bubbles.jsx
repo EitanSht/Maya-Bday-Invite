@@ -15,18 +15,35 @@ function random(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-export default function Bubbles() {
+export default function Bubbles({ onFirstPop }) {
   const [bubbles, setBubbles] = useState([]);
   const [stains, setStains] = useState([]); // Will hold the persistent splashes
+  const calledRef = React.useRef(false);
 
   // Spawn bubbles periodically
   useEffect(() => {
+    // drop an initial stain for visual cue
+    setStains([{ id: 'initial', top: '50%', left: '50%', size: 180, color: 'rgba(255,182,193,0.45)', rotation: random(0,360)}]);
+
+    // Spawn a batch of bubbles immediately so the screen isn't empty on load
+    const initialBubbles = Array.from({ length: 8 }).map(() => {
+      const size = random(40, 120);
+      const id = Date.now().toString() + Math.random();
+      const left = random(5, 85);
+      const animationDuration = random(15, 25);
+      const wobbleAmount = random(0.5, 1.5);
+      const wobbleSpeed = random(2, 5);
+      const colorSet = bubbleColors[Math.floor(random(0, bubbleColors.length))];
+      return { id, size, left, animationDuration, wobbleAmount, wobbleSpeed, color: colorSet.bubble, splashColor: colorSet.splash };
+    });
+    setBubbles(initialBubbles);
+
     const interval = setInterval(() => {
       setBubbles((prev) => {
         if (prev.length > 50) return prev; // Keep DOM under control
         const size = random(40, 120);
         const id = Date.now().toString() + Math.random();
-        const left = random(-10, 90);
+        const left = random(5, 85); // keep inside viewport
         const animationDuration = random(15, 25);
         const wobbleAmount = random(0.5, 1.5); // Controls how much the bubble wobbles
         const wobbleSpeed = random(2, 5); // Controls wobble speed
@@ -74,6 +91,12 @@ export default function Bubbles() {
       bubbleEl.style.transform = "scale(1.2)";
       bubbleEl.style.opacity = "0";
 
+      // Fire one-time callback to hide hint
+      if (!calledRef.current && onFirstPop) {
+        calledRef.current = true;
+        onFirstPop();
+      }
+
       // Play a soft pop sound
       const audio = new Audio();
       audio.src = `data:audio/mp3;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV`;
@@ -84,7 +107,7 @@ export default function Bubbles() {
         setBubbles((prev) => prev.filter((b) => b.id !== id));
       }, 100);
     }
-  }, [bubbles]);
+  }, [bubbles, onFirstPop]);
 
   const onAnimationEnd = useCallback((id) => {
       setBubbles((prev) => prev.filter((b) => b.id !== id));
@@ -136,7 +159,7 @@ export default function Bubbles() {
           onAnimationEnd={() => onAnimationEnd(b.id)}
           onClick={(e) => { e.stopPropagation(); handlePop(b.id, e); }}
           onTouchStart={(e) => { e.stopPropagation(); handlePop(b.id, e.touches[0]); }}
-          className='absolute bottom-0 pointer-events-auto cursor-pointer'
+          className='absolute bottom-[-64px] pointer-events-auto cursor-pointer'
           style={{
             left: `${b.left}%`,
             animation: `floatUp ${b.animationDuration}s linear forwards`,
