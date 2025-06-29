@@ -167,8 +167,7 @@ export default function Bubbles({ onFirstPop }) {
         <div
           key={b.id}
           onAnimationEnd={() => onAnimationEnd(b.id)}
-          onClick={(e) => { e.stopPropagation(); handlePop(b.id, e); }}
-          onTouchStart={(e) => { e.stopPropagation(); handlePop(b.id, e.touches[0]); }}
+          onPointerDown={(e) => { e.stopPropagation(); e.preventDefault(); handlePop(b.id, e); }}
           className='absolute bottom-[-64px] pointer-events-auto cursor-pointer'
           style={{
             left: `${b.left}%`,
