@@ -2,6 +2,7 @@ import React from "react";
 import whatsappIcon from "../assets/icons/whatsapp.svg?url";
 import googleMapsIcon from "../assets/icons/google-maps.svg?url";
 import wazeIcon from "../assets/icons/waze.svg?url";
+import calendarAddIcon from "../assets/icons/calendar-add.svg?url";
 
 export default function InviteCard({ popped }) {
   const message = `Maya turns two! 🎉 Come splash play with bubbles and enjoy backyard fun with friends!\nSaturday Aug 2nd – 4:30 PM\n16710 NE 16th Pl, Bellevue`;
@@ -10,7 +11,14 @@ export default function InviteCard({ popped }) {
     `${message}\n\n${window.location.href}`
   )}`;
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
-  const wazeUrl = `https://waze.com/ul?q=${encodedAddress}&navigate=yes`;
+  const wazeUrl = `https://www.waze.com/ul?q=${encodedAddress}&navigate=yes`;
+
+  // Google Calendar quick-add link (UTC times used: 23:30Z-02:30Z == 4:30-7:30 PM PDT)
+  const calendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+    "Maya turns two! 🎉"
+  )}&dates=20240802T233000Z/20240803T023000Z&details=${encodeURIComponent(
+    "Come splash play with bubbles and enjoy backyard fun with friends!"
+  )}&location=${encodedAddress}&sf=true&output=xml`;
 
   // Confetti colors for static rendering with Tailwind
   const confettiColors = [
@@ -109,7 +117,7 @@ export default function InviteCard({ popped }) {
             </div>
           </div>
           
-          <div className="flex justify-center gap-4 mt-2 pb-1">
+          <div className="flex justify-center gap-4 mt-2 pb-1 flex-wrap">
             {/* WhatsApp */}
             <a
               href={shareUrl}
@@ -145,6 +153,18 @@ export default function InviteCard({ popped }) {
                 <img src={wazeIcon} alt="Waze" className="w-9 h-9" />
               </div>
               <span className="text-sm font-medium text-gray-700 mt-2">Waze</span>
+            </a>
+            {/* Calendar */}
+            <a
+              href={calendarUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center group"
+            >
+              <div className="flex items-center justify-center w-[60px] h-[60px] bg-gradient-to-br from-purple-200 to-purple-400 hover:from-purple-300 hover:to-purple-500 rounded-full shadow-lg text-white transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-purple-200/50">
+                <img src={calendarAddIcon} alt="Calendar" className="w-8 h-8" />
+              </div>
+              <span className="text-sm font-medium text-gray-700 mt-2">Calendar</span>
             </a>
           </div>
         </div>
