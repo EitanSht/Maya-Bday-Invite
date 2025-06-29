@@ -22,7 +22,7 @@ export default function InviteCard({ popped }) {
 
   return (
     <div className="absolute inset-4 flex items-center justify-center pointer-events-none">
-      <div className="pointer-events-auto relative max-w-sm w-full bg-gradient-to-br from-white/80 to-pink-50/90 bg-clip-border backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-[0_0_50px_rgba(0,0,0,0.1)] overflow-hidden border-4 border-transparent transform transition-all hover:scale-[1.02] animate-fadeIn">
+      <div className="pointer-events-auto relative max-w-sm w-full bg-gradient-to-br from-white/80 to-pink-50/90 bg-clip-border backdrop-blur-xl rounded-3xl p-5 sm:p-6 shadow-[0_0_40px_rgba(0,0,0,0.08)] overflow-hidden border-4 border-transparent transform transition-all hover:scale-[1.02] animate-fadeIn">
         {/* Card Decorative Blobs */}
         <div className="absolute -top-8 -left-8 w-24 h-24 bg-pink-300/30 rounded-full animate-float-slow"></div>
         <div className="absolute -bottom-16 -right-16 w-32 h-32 bg-blue-300/30 rounded-full animate-float-slow" style={{ animationDelay: '2s' }}></div>
@@ -62,7 +62,7 @@ export default function InviteCard({ popped }) {
           </h1>
           
           {/* Wavy underline */}
-          <svg className="mx-auto mb-5" width="140" height="16" viewBox="0 0 140 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className="mx-auto mb-4" width="140" height="16" viewBox="0 0 140 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 8C10 8 10 0 20 0C30 0 30 8 40 8C50 8 50 0 60 0C70 0 70 8 80 8C90 8 90 0 100 0C110 0 110 8 120 8C130 8 130 0 140 0" stroke="url(#grad)" strokeWidth="4" strokeLinecap="round"/>
             <defs>
               <linearGradient id="grad" x1="0" y1="0" x2="140" y2="0" gradientUnits="userSpaceOnUse">
@@ -73,18 +73,16 @@ export default function InviteCard({ popped }) {
           </svg>
           
           {/* Optional hint */}
-          {!popped && (
-            <p className="font-body text-sm text-gray-500 mb-3 text-center animate-pulse">
-              Tap a bubble to pop it!
-            </p>
-          )}
+          <p className={`font-body text-sm text-gray-500 mb-3 text-center transition-opacity duration-500 ${popped ? 'opacity-0' : 'opacity-100 animate-pulse'}`}>
+            Tap a bubble to pop it!
+          </p>
           
           {/* Description */}
-          <p className="font-body text-lg sm:text-xl text-gray-700 mb-8 text-center leading-relaxed max-w-sm mx-auto">
+          <p className="font-body text-lg sm:text-xl text-gray-700 mb-6 text-center leading-relaxed max-w-sm mx-auto">
             Come splash play with bubbles and enjoy backyard fun with friends!
           </p>
           
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-4 mb-6 shadow-inner font-body">
+          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-4 mb-5 shadow-inner font-body">
             {/* Date & Time - single line */}
             <div className="flex items-center justify-center gap-2 mb-3 flex-wrap sm:flex-nowrap whitespace-nowrap">
               <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0">
@@ -111,7 +109,7 @@ export default function InviteCard({ popped }) {
             </div>
           </div>
           
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-4 mt-2 pb-1">
             {/* WhatsApp */}
             <a
               href={shareUrl}
