@@ -117,7 +117,7 @@ export default function InviteCard({ popped }) {
             </div>
           </div>
           
-          <div className="flex justify-center gap-4 mt-2 pb-1 flex-wrap">
+          <div className="flex justify-center gap-2 sm:gap-4 mt-2 pb-1 flex-wrap">
             {/* WhatsApp */}
             <a
               href={shareUrl}
@@ -125,10 +125,10 @@ export default function InviteCard({ popped }) {
               rel="noopener noreferrer"
               className="flex flex-col items-center group"
             >
-              <div className="flex items-center justify-center w-[60px] h-[60px] bg-gradient-to-br from-green-200 to-green-400 hover:from-green-300 hover:to-green-500 rounded-full shadow-lg text-white transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-green-200/50">
-                <img src={whatsappIcon} alt="WhatsApp" className="w-8 h-8" />
+              <div className="flex items-center justify-center w-14 h-14 sm:w-[60px] sm:h-[60px] bg-gradient-to-br from-green-200 to-green-400 hover:from-green-300 hover:to-green-500 rounded-full shadow-lg text-white transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-green-200/50">
+                <img src={whatsappIcon} alt="WhatsApp" className="w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <span className="text-sm font-medium text-gray-700 mt-2">Share</span>
+              <span className="text-xs sm:text-sm font-medium text-gray-700 mt-2">Share</span>
             </a>
             {/* Google Maps */}
             <a
@@ -137,10 +137,10 @@ export default function InviteCard({ popped }) {
               rel="noopener noreferrer"
               className="flex flex-col items-center group"
             >
-              <div className="flex items-center justify-center w-[60px] h-[60px] bg-gradient-to-br from-blue-200 to-blue-400 hover:from-blue-300 hover:to-blue-500 rounded-full shadow-lg text-white transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-blue-200/50">
-                <img src={googleMapsIcon} alt="Maps" className="w-8 h-8" />
+              <div className="flex items-center justify-center w-14 h-14 sm:w-[60px] sm:h-[60px] bg-gradient-to-br from-blue-200 to-blue-400 hover:from-blue-300 hover:to-blue-500 rounded-full shadow-lg text-white transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-blue-200/50">
+                <img src={googleMapsIcon} alt="Maps" className="w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <span className="text-sm font-medium text-gray-700 mt-2">Maps</span>
+              <span className="text-xs sm:text-sm font-medium text-gray-700 mt-2">Maps</span>
             </a>
             {/* Waze */}
             <a
@@ -149,10 +149,10 @@ export default function InviteCard({ popped }) {
               rel="noopener noreferrer"
               className="flex flex-col items-center group"
             >
-              <div className="flex items-center justify-center w-[60px] h-[60px] bg-gradient-to-br from-cyan-200 to-cyan-400 hover:from-cyan-300 hover:to-cyan-500 rounded-full shadow-lg text-white transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-cyan-200/50">
-                <img src={wazeIcon} alt="Waze" className="w-8 h-8" />
+              <div className="flex items-center justify-center w-14 h-14 sm:w-[60px] sm:h-[60px] bg-gradient-to-br from-cyan-200 to-cyan-400 hover:from-cyan-300 hover:to-cyan-500 rounded-full shadow-lg text-white transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-cyan-200/50">
+                <img src={wazeIcon} alt="Waze" className="w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <span className="text-sm font-medium text-gray-700 mt-2">Waze</span>
+              <span className="text-xs sm:text-sm font-medium text-gray-700 mt-2">Waze</span>
             </a>
             {/* Calendar */}
             <a
@@ -161,10 +161,10 @@ export default function InviteCard({ popped }) {
               rel="noopener noreferrer"
               className="flex flex-col items-center group"
             >
-              <div className="flex items-center justify-center w-[60px] h-[60px] bg-gradient-to-br from-purple-200 to-purple-400 hover:from-purple-300 hover:to-purple-500 rounded-full shadow-lg text-white transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-purple-200/50">
-                <img src={calendarAddIcon} alt="Calendar" className="w-8 h-8" />
+              <div className="flex items-center justify-center w-14 h-14 sm:w-[60px] sm:h-[60px] bg-gradient-to-br from-purple-200 to-purple-400 hover:from-purple-300 hover:to-purple-500 rounded-full shadow-lg text-white transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-purple-200/50">
+                <img src={calendarAddIcon} alt="Calendar" className="w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <span className="text-sm font-medium text-gray-700 mt-2">Calendar</span>
+              <span className="text-xs sm:text-sm font-medium text-gray-700 mt-2">Calendar</span>
             </a>
           </div>
         </div>
