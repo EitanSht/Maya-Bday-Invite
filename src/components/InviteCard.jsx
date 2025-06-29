@@ -81,7 +81,7 @@ export default function InviteCard({ popped }) {
           </svg>
           
           {/* Optional hint */}
-          <p className={`font-body text-sm text-gray-500 mb-3 text-center transition-opacity duration-500 ${popped ? 'opacity-0' : 'opacity-100 animate-pulse'}`}>
+          <p className="font-body text-sm text-gray-500 mb-3 text-center animate-pulse">
             Tap a bubble to pop it!
           </p>
           
@@ -150,7 +150,7 @@ export default function InviteCard({ popped }) {
               className="flex flex-col items-center group"
             >
               <div className="flex items-center justify-center w-[60px] h-[60px] bg-gradient-to-br from-cyan-200 to-cyan-400 hover:from-cyan-300 hover:to-cyan-500 rounded-full shadow-lg text-white transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-cyan-200/50">
-                <img src={wazeIcon} alt="Waze" className="w-9 h-9" />
+                <img src={wazeIcon} alt="Waze" className="w-8 h-8" />
               </div>
               <span className="text-sm font-medium text-gray-700 mt-2">Waze</span>
             </a>
