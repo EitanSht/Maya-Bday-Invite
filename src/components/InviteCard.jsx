@@ -62,7 +62,7 @@ export default function InviteCard({ popped }) {
           </h1>
           
           {/* Wavy underline */}
-          <svg className="mx-auto mb-4" width="140" height="16" viewBox="0 0 140 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className="mx-auto mb-4 overflow-visible" width="140" height="24" viewBox="0 0 140 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 8C10 8 10 0 20 0C30 0 30 8 40 8C50 8 50 0 60 0C70 0 70 8 80 8C90 8 90 0 100 0C110 0 110 8 120 8C130 8 130 0 140 0" stroke="url(#grad)" strokeWidth="4" strokeLinecap="round"/>
             <defs>
               <linearGradient id="grad" x1="0" y1="0" x2="140" y2="0" gradientUnits="userSpaceOnUse">

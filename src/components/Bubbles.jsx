@@ -3,12 +3,12 @@ import Splash from "./Splash"; // Import the new Splash component
 
 // Enhanced bubble colors with matching splash colors - more vibrant and festive
 const bubbleColors = [
-  { bubble: "rgba(255,105,180,0.85)", splash: "rgba(255,105,180,0.6)" }, // Hot Pink
-  { bubble: "rgba(123,104,238,0.85)", splash: "rgba(123,104,238,0.6)" }, // Medium Slate Blue
-  { bubble: "rgba(64,224,208,0.85)", splash: "rgba(64,224,208,0.6)" }, // Turquoise
-  { bubble: "rgba(255,215,0,0.85)", splash: "rgba(255,215,0,0.6)" }, // Gold
-  { bubble: "rgba(147,112,219,0.85)", splash: "rgba(147,112,219,0.6)" }, // Medium Purple
-  { bubble: "rgba(0,191,255,0.85)", splash: "rgba(0,191,255,0.6)" }, // Deep Sky Blue
+  { bubble: "rgba(255,105,180,0.5)", splash: "rgba(255,105,180,0.35)" }, // Hot Pink
+  { bubble: "rgba(123,104,238,0.5)", splash: "rgba(123,104,238,0.35)" }, // Medium Slate Blue
+  { bubble: "rgba(64,224,208,0.5)", splash: "rgba(64,224,208,0.35)" }, // Turquoise
+  { bubble: "rgba(255,215,0,0.5)", splash: "rgba(255,215,0,0.35)" }, // Gold
+  { bubble: "rgba(147,112,219,0.5)", splash: "rgba(147,112,219,0.35)" }, // Medium Purple
+  { bubble: "rgba(0,191,255,0.5)", splash: "rgba(0,191,255,0.35)" }, // Deep Sky Blue
 ];
 
 function random(min, max) {
@@ -26,8 +26,8 @@ export default function Bubbles({ onFirstPop }) {
     setStains([{ id: 'initial', top: '50%', left: '50%', size: 180, color: 'rgba(255,182,193,0.45)', rotation: random(0,360)}]);
 
     // Spawn a batch of bubbles immediately so the screen isn't empty on load
-    const initialBubbles = Array.from({ length: 8 }).map(() => {
-      const size = random(40, 120);
+    const initialBubbles = Array.from({ length: 4 }).map(() => {
+      const size = random(30, 90);
       const id = Date.now().toString() + Math.random();
       const left = random(5, 85);
       const animationDuration = random(15, 25);
@@ -40,8 +40,8 @@ export default function Bubbles({ onFirstPop }) {
 
     const interval = setInterval(() => {
       setBubbles((prev) => {
-        if (prev.length > 50) return prev; // Keep DOM under control
-        const size = random(40, 120);
+        if (prev.length > 30) return prev; // Keep DOM under control
+        const size = random(30, 90);
         const id = Date.now().toString() + Math.random();
         const left = random(5, 85); // keep inside viewport
         const animationDuration = random(15, 25);
@@ -62,7 +62,7 @@ export default function Bubbles({ onFirstPop }) {
           },
         ];
       });
-    }, 700);
+    }, 1700);
     return () => clearInterval(interval);
   }, []);
 
@@ -106,6 +106,11 @@ export default function Bubbles({ onFirstPop }) {
       setTimeout(() => {
         setBubbles((prev) => prev.filter((b) => b.id !== id));
       }, 100);
+
+      // Remove the stain after fadeSplash completes (4.5s)
+      setTimeout(() => {
+        setStains((prev) => prev.filter((s) => s.id !== newStain.id));
+      }, 2200);
     }
   }, [bubbles, onFirstPop]);
 
@@ -115,7 +120,7 @@ export default function Bubbles({ onFirstPop }) {
 
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-20">
       <style>{`
         @keyframes floatUp {
           0% { transform: translateY(0); opacity: 1; }
@@ -135,6 +140,11 @@ export default function Bubbles({ onFirstPop }) {
           0% { opacity: 0.7; }
           50% { opacity: 1; }
           100% { opacity: 0.7; }
+        }
+        @keyframes fadeSplash {
+          0%   { opacity: 1; }
+          70%  { opacity: 1; }
+          100% { opacity: 0; }
         }
       `}</style>
 

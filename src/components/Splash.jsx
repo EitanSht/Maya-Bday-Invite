@@ -72,7 +72,7 @@ const Splash = ({ color, size, rotation, top, left }) => {
     height: "100%",
     transform: `rotate(${rotation}deg)`,
     transformOrigin: "center center",
-    animation: "splatScale 0.5s cubic-bezier(0.12,0.9,0.53,1.3) forwards",
+    animation: "splatScale 0.5s cubic-bezier(0.12,0.9,0.53,1.3) forwards, fadeSplash 1.5s 0.5s forwards",
   };
 
   // Create a lighter version of the color for the highlight
